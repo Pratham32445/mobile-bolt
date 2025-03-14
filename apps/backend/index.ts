@@ -1,15 +1,16 @@
 import express from "express"
 import prismaClient from "db/client"
 import cors from "cors";
+import { authMiddleware } from "./middleware";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const USER_ID = "abc";
 
-app.post("/project", async (req, res) => {
+app.post("/project",authMiddleware, async (req, res) => {
+    console.log("calling")
     const { prompt } = req.body;
     if (!prompt) {
         res.json(401).json({
@@ -20,7 +21,7 @@ app.post("/project", async (req, res) => {
     const project = await prismaClient.project.create({
         data: {
             description: prompt.split(" ")[1],
-            userId: USER_ID
+            userId: req.userId!
         }
     })
     res.json({
@@ -29,13 +30,17 @@ app.post("/project", async (req, res) => {
     })
 })
 
-app.get("/projects", async (req, res) => {
+app.get("/projects", authMiddleware, async (req, res) => {
     const projects = await prismaClient.project.findMany({
         where: {
-            userId: USER_ID
+            userId: req.userId!
         }
     })
     res.json({
         projects
     })
+})
+
+app.listen(process.env.PORT || 8080,()=>{
+    console.log("listening")
 })

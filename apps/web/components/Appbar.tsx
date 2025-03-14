@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 
 const Appbar = () => {
   return (
-    <div className="flex items-center justify-between p-4 px-6">
+    <div className="flex items-center justify-between p-5">
       <div>
         <p className="text-2xl">Bolty</p>
       </div>

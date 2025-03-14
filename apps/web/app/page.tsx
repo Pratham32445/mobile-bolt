@@ -1,6 +1,6 @@
-import React from "react";
-import Appbar from "../src/components/Appbar";
-import Prompt from "../src/components/Prompt";
+import Appbar from "@/components/Appbar";
+import Prompt from "@/components/Prompt";
+import React from "react";  
 
 const Landing = () => {
   return (
