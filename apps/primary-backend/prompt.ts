@@ -1,0 +1,1 @@
+export const title_prompt = `From the following detailed prompt, extract a short description that summarizes the main goal or purpose of the application. Keep it brief and focus on the key features or the primary function of the app`
